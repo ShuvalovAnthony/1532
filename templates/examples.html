@@ -1,0 +1,11 @@
+{% if item.theme == "Переменные" %}
+Если Переменные
+{% endif %}
+
+
+
+@register.inclusion_tag('lessons/themes_list.html')
+def show_themes_list():
+    lessons = Lessons.objects.all().filter(category=1) для получения списка уроков питон
+
+    return {"lessons": lessons, }

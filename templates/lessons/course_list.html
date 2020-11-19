@@ -1,0 +1,19 @@
+<div class="card-deck">
+    {% for item in categories %}
+    <div class="col-md-3  col-xl-4">
+        <div class="card bg-mviol">
+            <a href="{{item.get_absolute_url}}" style="text-decoration: none">
+                <div class="card-header text-myellow2">
+                    <h5 class="card-title">{{item.category_title}}</h5>
+                </div>
+                <div class="card-body text-myellow">
+                    <p class="card-text">{{item.category_preview_content}}</p>
+                  </div>
+            </a>
+            <div class="card-footer">
+                <small class="text-maqua">Возраст: {{item.category_age}} лет<br>Уроков: {{item.cnt}}</small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

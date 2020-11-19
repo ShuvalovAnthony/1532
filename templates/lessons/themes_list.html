@@ -1,0 +1,8 @@
+<div class="list-group">
+    <a href="{% url 'courses' %}" class="list-group-item d-flex justify-content-between align-items-center bg-mviol text-myellow2">Назад к курсам</a>
+    {% for item in theme %}
+    <a href="{{item.get_absolute_url}}" class="list-group-item d-flex justify-content-between align-items-center bg-mviol text-myellow">
+    {{item.theme_title}}
+    </a>
+    {% endfor %}
+</div>

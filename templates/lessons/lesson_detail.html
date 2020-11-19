@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load lessons_tags %}
+
+{% block title %} {{title}} {% endblock %}
+
+{%block sibebar%}
+{% csrf_token %}
+{% if request.user.is_authenticated %}
+{% show_themes_list theme_category=theme %}
+{% endif %}
+<a class="btn btn-primary"
+id="completed_lessons"
+data-user_name="{{user.username}}"
+data-user_id="{{user.id}}"
+data-lesson_id="{{object.id}}"
+>
+POST 
+</a>
+{%endblock%}
+
+{%block content%}
+<div class="card mb-3" style="max-width: 1200px;">
+    <div class="card-header">Курс <a href="{{object.category.get_absolute_url}}"> {{object.category}} </a></div>
+        <div class="row">
+    <div class="row no-gutters">
+            <div class="col-md-10">
+                <div class="card-body">
+                    <h5 class="card-title">{{object.title}}</h5>
+                    <p class="card-text">{{object.content}}</p>
+                    <p class="card-text"></small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-bg_main" role="alert">
+        ПЕЧАЛЬ
+    </div>
+    <div class="alert alert-bg_panels" role="alert">
+        ПЕЧАЛЬ
+    </div>
+    <div class="alert alert-accent" role="alert">
+        ПЕЧАЛЬ
+    </div>
+</div>
+
+{%endblock%}
+
+{% block add_script %}
+    <script src="{% static  'ajax_scrpts/test.js' %}"></script>
+    <script src="{% static  'ajax_scrpts/complete_lesson.js' %}"></script>
+    <script src="{% static  'ajax_scrpts/onload_complete_lesson.js' %}"></script>
+{% endblock %}

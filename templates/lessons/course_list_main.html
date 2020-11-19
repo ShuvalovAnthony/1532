@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load lessons_tags %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block sibebar %}
+
+{%endblock%}
+
+{%block content%}
+{% if request.user.is_authenticated %}
+{% show_course_list category_access=user.profile.course %}
+{% else %}
+Авторизуйтесь
+{% endif %}
+{{user.profile.python_access}}
+{{user.profile.course}}
+{%endblock%}

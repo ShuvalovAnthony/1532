@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load lessons_tags %}
+
+{% block title %} {{title}} {% endblock %}
+
+{%block sibebar%}
+{% if request.user.is_authenticated %}
+{% show_themes_list theme_category=theme %}
+{% endif %}
+{%endblock%}
+
+{%block content%}
+{% if request.user.is_authenticated %}
+
+
+{% for item in themes %}
+<p>{{item}}</p>
+{% endfor %}
+
+
+{% for item in lessons %}
+<div class="card mb-3 bg-mviol" style="max-width: 1000px;">
+    <div class="card-header text-myellow2">Курс <a href="{{item.category.get_absolute_url}}" class="text-mred2">{{item.category}}</a></div>
+    <div class="card-body text-myellow">
+        <div class="media">
+            <img class="mr-3" class="image-fluid" width="12%" src="{{item.icon.url}}" alt="">
+            <div class="media-body">
+                <h5 class="card-title">{{item.title}}</h5>
+                <p class="card-text">
+                    {{item.preview_content}}
+                </p>
+                <a href="{{item.get_absolute_url}}" class="btn btn-mlight">Открыть урок</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+<div class="row ml-1">
+    <nav aria-label="...">
+        <ul class="pagination">
+            {% for p in page_obj.paginator.page_range %}
+            <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
+
+{% else %}
+Авторизуйтесь епт
+{% endif %}
+
+{%endblock%}
